@@ -305,12 +305,16 @@ class Plugin_Name {
 					'post_id' => $post->ID,
 					'status' => 'approve' //Change this to the type of comments to be displayed
 				));
+				
+				print_r($comments);
 
+/*
 				wp_list_comments(array(
 					'per_page' => 10, //Allow comment pagination
 					'reverse_top_level' => false //Show the latest comments at the top of the list
 				), $comments);
-				echo("<br><br><br><br><br>");
+*/
+//				echo("<br><br><br><br><br>");
 				
 $args = array(
   'id_form'           => 'commentform',
