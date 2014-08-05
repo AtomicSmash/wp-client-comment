@@ -1,0 +1,6 @@
+.clientComment{
+	position: fixed;
+	width: 300px;
+	bottom: 0px;
+	background: red;
+}

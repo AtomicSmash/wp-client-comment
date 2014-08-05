@@ -267,7 +267,7 @@ class Plugin_Name {
 	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
-		wp_enqueue_style( $this->plugin_slug . '-plugin-styles', plugins_url( 'assets/css/public.css', __FILE__ ), array(), self::VERSION );
+		wp_enqueue_style( $this->plugin_slug . '-plugin-styles', plugins_url( 'assets/css/clientComment.css', __FILE__ ), array(), self::VERSION );
 	}
 
 	/**
@@ -293,11 +293,13 @@ class Plugin_Name {
 		// @TODO: Define your action hook callback here
 				//echo("");
 				wp_reset_query();
-				echo "<div>";
+				echo "<div class='clientComment'>";
 				global $post;
+/*
 								echo "<pre>";
 								print_r($post);
 								echo "</pre>";
+*/
 								
 				$comments = get_comments(array(
 					'post_id' => $post->ID,
@@ -309,7 +311,39 @@ class Plugin_Name {
 					'reverse_top_level' => false //Show the latest comments at the top of the list
 				), $comments);
 				echo("<br><br><br><br><br>");
-				comment_form();
+				
+$args = array(
+  'id_form'           => 'commentform',
+  'id_submit'         => 'submit',
+  'title_reply'       => __( 'Leave a comment about this page' ),
+  'title_reply_to'    => __( 'Leave a Reply to %s' ),
+  'cancel_reply_link' => __( 'Cancel Reply' ),
+  'label_submit'      => __( 'Post' ),
+
+  'comment_field' =>  '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) .
+    '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true">' .
+    '</textarea></p>',
+
+  'must_log_in' => '<p class="must-log-in">' .
+    sprintf(
+      __( 'You must be <a href="%s">logged in</a> to post a comment.' ),
+      wp_login_url( apply_filters( 'the_permalink', get_permalink() ) )
+    ) . '</p>',
+
+  'logged_in_as' => '',
+
+  'comment_notes_before' => '<p class="comment-notes">' .
+    __( 'Your email address will not be published.' ) . ( $req ? $required_text : '' ) .
+    '</p>',
+
+  'comment_notes_after' => ''
+
+);
+				if ( is_user_logged_in() ) {
+				comment_form($args);
+				}else{
+					echo "Please log in";
+				}
 				echo "</div>";
 	}
 
