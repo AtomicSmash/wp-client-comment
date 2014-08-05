@@ -292,7 +292,23 @@ class Plugin_Name {
 	public function action_method_name() {
 		// @TODO: Define your action hook callback here
 				//echo("");
+				wp_reset_query();
 				echo "<div>";
+				global $post;
+								echo "<pre>";
+								print_r($post);
+								echo "</pre>";
+								
+				$comments = get_comments(array(
+					'post_id' => $post->ID,
+					'status' => 'approve' //Change this to the type of comments to be displayed
+				));
+
+				wp_list_comments(array(
+					'per_page' => 10, //Allow comment pagination
+					'reverse_top_level' => false //Show the latest comments at the top of the list
+				), $comments);
+				echo("<br><br><br><br><br>");
 				comment_form();
 				echo "</div>";
 	}
