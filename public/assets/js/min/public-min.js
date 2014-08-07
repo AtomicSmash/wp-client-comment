@@ -1,1 +1,1 @@
-!function($){$(".clientCommentButton").live("click",function(){return $(".clientCommentWrapper").addClass("active"),!1})}(jQuery);
+!function($){$(".clientCommentButtonOpen").live("click",function(){return $(".clientCommentWrapper").addClass("active"),!1}),$(".clientCommentButtonClose").live("click",function(){return $(".clientCommentWrapper").removeClass("active"),!1})}(jQuery);

@@ -293,8 +293,9 @@ class Plugin_Name {
 		// @TODO: Define your action hook callback here
 		//echo("");
 		wp_reset_query();
-		echo "<a href='#' class='clientCommentButton'>Button</a>";
+		echo "<a href='#' class='clientCommentButtonOpen'>Button</a>";
 		echo "<div class='clientCommentWrapper'>";
+			echo "<a href='#' class='clientCommentButtonClose'>close</a>";
 		global $post;
 /*
 						echo "<pre>";

@@ -1,7 +1,7 @@
 (function ( $ ) {
 
 	//alert("asdsad");
-	$( ".clientCommentButton" ).live( "click", function() {
+	$( ".clientCommentButtonOpen" ).live( "click", function() {
 		//lert("ss");
 /*
 		$("#mobileNavigation li").hide();
@@ -12,8 +12,11 @@
 	
 		$( this ).removeClass('mobileMenuTriggerOpen');
 */
+
+
+
+
 		$( ".clientCommentWrapper" ).addClass('active');
-	
 /*
 		$(".mobileNav").css("opactiy",0).velocity("transition.slideRightBigOut", {stagger: 300, drag: true, duration:300});
 	
@@ -33,5 +36,14 @@
 
 		return false;
 	});
+	$( ".clientCommentButtonClose" ).live( "click", function() {
+
+		$( ".clientCommentWrapper" ).removeClass('active');
+
+		return false;
+	});
+	
+	
+
 	
 }(jQuery));
