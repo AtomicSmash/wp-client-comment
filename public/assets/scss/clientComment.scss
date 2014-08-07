@@ -1,0 +1,55 @@
+// Compass global css reset
+//@import "compass/reset";
+
+//Get Normalize
+//@include "../../bower_components/normalize-css/normalize.css";
+// Compass css3 transitions
+
+//@import "compass/css3";
+//@import "compass/typography";
+
+
+@import "compass";
+//@include global-reset;
+
+
+$clientCommentGrey: #8e95a5;
+$clientCommentDarkBlue: #525e7a;
+$clientCommentCream: #f4f2ef;
+
+.clientCommentButton{
+
+	position: fixed;
+	width: 380px;
+	bottom: 0px;
+	right: 30px;
+	background: $clientCommentCream;
+	z-index: 999999;
+}
+
+.clientCommentWrapper{
+	position: fixed;
+	width: 380px;
+	bottom: -1000px;
+	right: 0px;
+	background: $clientCommentCream;
+	padding: 20px;
+	z-index: 999999;
+	@include box-shadow(0px 0px 8px 3px rgba(0, 0, 0, 0.15));
+	@include single-transition(all, 0.3s, ease-in-out, 0ms);
+
+	.clientComment{
+		float: left;
+		margin-bottom: 20px;
+		.avatar{
+			@include border-radius(36px);
+			float: left;
+		}
+		p{
+			color: $clientCommentDarkBlue;
+		}
+	}
+	&.active{
+		bottom: 0px;
+	}
+}

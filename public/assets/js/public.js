@@ -1,10 +1,37 @@
 (function ( $ ) {
-	"use strict";
 
-	$(function () {
+	//alert("asdsad");
+	$( ".clientCommentButton" ).live( "click", function() {
+		//lert("ss");
+/*
+		$("#mobileNavigation li").hide();
+		//$(".showHiddenLinks").hide();
+		
+		
+		$( ".mobileMenuTrigger" ).html('<i class="menuIcon icon-hamburger"></i><span>Menu</span>');
+	
+		$( this ).removeClass('mobileMenuTriggerOpen');
+*/
+		$( ".clientCommentWrapper" ).addClass('active');
+	
+/*
+		$(".mobileNav").css("opactiy",0).velocity("transition.slideRightBigOut", {stagger: 300, drag: true, duration:300});
+	
+	
+		$(".mainContent,.sidebar,.subFooter,.footer,.charities,.ourMission_block,.homepageLeft,.homepageRight,.breadCrumbs").css("opactiy",0).velocity("transition.slideLeftIn", {stagger: 0, drag: false, duration:300});
+		
+		
+		
+		
+		setTimeout(function(){
+			$(".mobileNav").removeClass('active');
+			
+		}, 500);
+		
+		
+*/
 
-		// Place your public-facing JavaScript here
-
+		return false;
 	});
-
+	
 }(jQuery));

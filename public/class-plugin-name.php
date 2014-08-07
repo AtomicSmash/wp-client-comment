@@ -291,64 +291,124 @@ class Plugin_Name {
 	 */
 	public function action_method_name() {
 		// @TODO: Define your action hook callback here
-				//echo("");
-				wp_reset_query();
-				echo "<div class='clientComment'>";
-				global $post;
+		//echo("");
+		wp_reset_query();
+		echo "<a href='#' class='clientCommentButton'>Button</a>";
+		echo "<div class='clientCommentWrapper'>";
+		global $post;
 /*
-								echo "<pre>";
-								print_r($post);
-								echo "</pre>";
+						echo "<pre>";
+						print_r($post);
+						echo "</pre>";
 */
-								
-				$comments = get_comments(array(
-					'post_id' => $post->ID,
-					'status' => 'approve' //Change this to the type of comments to be displayed
-				));
+						
+		$comments = get_comments(array(
+			'status' => 'approve' //Change this to the type of comments to be displayed
+		));
+		
+/*
+		echo "<pre>";
+		print_r($comments);
+		echo "</pre>";
+*/
+		foreach($comments as $comment){
+			echo "<div class='clientComment'>";
+			//echo get_avatar( $comment->author, $size, $default, $alt );
+				echo get_avatar( $comment->comment_author_email, 71);
+				echo $comment->comment_content;
 				
-				print_r($comments);
+				
+	/*
+				echo $comment->comment_date;
+				echo("<br>");
+				echo strtotime($comment->comment_date);
+				echo("<br>");
+	*/
+				
+				echo self::timeAgo(strtotime($comment->comment_date));
+				
+			
+
+			
+			echo "</div>";
+		}
+/*
+(
+[0] => stdClass Object
+(
+    [comment_ID] => 3
+    [comment_post_ID] => 2
+    [comment_author] => David
+    [comment_author_email] => david@atomicsmash.co.uk
+    [comment_author_url] => http://testweb.com
+    [comment_author_IP] => 127.0.0.1
+    [comment_date] => 2014-08-05 08:14:56
+    [comment_date_gmt] => 2014-08-05 08:14:56
+    [comment_content] => Another great comment
+    [comment_karma] => 0
+    [comment_approved] => 1
+    [comment_agent] => Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36
+    [comment_type] => 
+    [comment_parent] => 0
+    [user_id] => 1
+*/
 
 /*
-				wp_list_comments(array(
-					'per_page' => 10, //Allow comment pagination
-					'reverse_top_level' => false //Show the latest comments at the top of the list
-				), $comments);
+		wp_list_comments(array(
+			'per_page' => 10, //Allow comment pagination
+			'reverse_top_level' => false //Show the latest comments at the top of the list
+		), $comments);
 */
 //				echo("<br><br><br><br><br>");
-				
-$args = array(
-  'id_form'           => 'commentform',
-  'id_submit'         => 'submit',
-  'title_reply'       => __( 'Leave a comment about this page' ),
-  'title_reply_to'    => __( 'Leave a Reply to %s' ),
-  'cancel_reply_link' => __( 'Cancel Reply' ),
-  'label_submit'      => __( 'Post' ),
+		
+		$args = array(
+			'id_form'           => 'commentform',
+			'id_submit'         => 'submit',
+			'title_reply'       => __( '' ),
+			'title_reply_to'    => __( 'Leave a Reply to %s' ),
+			'cancel_reply_link' => __( 'Cancel Reply' ),
+			'label_submit'      => __( 'Post' ),
+			
+			'comment_field' =>  '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) .
+			'</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true">' .
+			'</textarea></p>',
+			
+			'must_log_in' => '',
+			'logged_in_as' => '',
+			'comment_notes_before' => '',
+			'comment_notes_after' => ''
+		
+		);
+		if ( is_user_logged_in() ) {
+		comment_form($args);
+		}else{
+			echo "Please log in";
+		}
+		echo "</div>";
+	}
 
-  'comment_field' =>  '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) .
-    '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true">' .
-    '</textarea></p>',
 
-  'must_log_in' => '<p class="must-log-in">' .
-    sprintf(
-      __( 'You must be <a href="%s">logged in</a> to post a comment.' ),
-      wp_login_url( apply_filters( 'the_permalink', get_permalink() ) )
-    ) . '</p>',
-
-  'logged_in_as' => '',
-
-  'comment_notes_before' => '<p class="comment-notes">' .
-    __( 'Your email address will not be published.' ) . ( $req ? $required_text : '' ) .
-    '</p>',
-
-  'comment_notes_after' => ''
-
-);
-				if ( is_user_logged_in() ) {
-				comment_form($args);
-				}else{
-					echo "Please log in";
-				}
-				echo "</div>";
+	public function timeAgo($time){
+	
+	   $periods = array("s", "m", "hr", "d", "w", "m", "y", "d");
+	   $lengths = array("60","60","24","7","4.35","12","10");
+	
+	   $now = time();
+	
+	       $difference     = $now - $time;
+	       $tense         = "ago";
+	
+	   for($j = 0; $difference >= $lengths[$j] && $j < count($lengths)-1; $j++) {
+	       $difference /= $lengths[$j];
+	   }
+	
+	   $difference = round($difference);
+	
+	   if($difference != 1) {
+	       $periods[$j].= "s";
+	   }
+	
+	   return $difference."".$periods[$j];
 	}
 
 	/**

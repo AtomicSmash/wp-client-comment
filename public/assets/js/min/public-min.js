@@ -1,0 +1,1 @@
+!function($){$(".clientCommentButton").live("click",function(){return $(".clientCommentWrapper").addClass("active"),!1})}(jQuery);
