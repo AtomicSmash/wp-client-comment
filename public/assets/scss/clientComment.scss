@@ -8,6 +8,7 @@
 //@import "compass/css3";
 //@import "compass/typography";
 
+//@import "compass/reset";
 
 @import "compass";
 //@include global-reset;
@@ -28,6 +29,8 @@ $clientCommentCream: #f4f2ef;
 }
 
 .clientCommentWrapper{
+
+	font-family: arial, sans-serif;
 	position: fixed;
 	width: 380px;
 	bottom: -1000px;
@@ -37,13 +40,19 @@ $clientCommentCream: #f4f2ef;
 	z-index: 999999;
 	@include box-shadow(0px 0px 5px 0px rgba(0, 0, 0, 0.25));
 	@include single-transition(all, 0.3s, ease-in-out, 0ms);
-
+	
+	.clientCommentButtonClose{
+		position: absolute;
+		right: 5px;
+		top: 5px;
+	}
 	.clientComment{
 		float: left;
 		margin-bottom: 20px;
 		.avatar{
 			@include border-radius(36px);
 			float: left;
+			margin-right: 10px;
 		}
 		p{
 			color: $clientCommentDarkBlue;
@@ -51,5 +60,23 @@ $clientCommentCream: #f4f2ef;
 	}
 	&.active{
 		bottom: 0px;
+	}
+	textarea{
+		border: 0px;
+		@include border-radius(3px);
+		outline: none;
+		color: $clientCommentDarkBlue;
+		font-size: 17px;
+		font-weight: 900;
+		width: 96%;
+		padding: 2%;
+	}
+	input[type="submit"]{
+		@include border-radius(3px);
+		background: $clientCommentDarkBlue;
+		color: white;
+		font-size: 13px;
+		border: 0px;
+		padding: 7px 15px;
 	}
 }

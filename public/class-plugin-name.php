@@ -326,7 +326,7 @@ class Plugin_Name {
 				echo("<br>");
 	*/
 				
-				echo self::timeAgo(strtotime($comment->comment_date));
+				echo " - ".self::timeAgo(strtotime($comment->comment_date));
 				
 			
 
@@ -370,8 +370,7 @@ class Plugin_Name {
 			'cancel_reply_link' => __( 'Cancel Reply' ),
 			'label_submit'      => __( 'Post' ),
 			
-			'comment_field' =>  '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) .
-			'</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true">' .
+			'comment_field' =>  '<p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true">' .
 			'</textarea></p>',
 			
 			'must_log_in' => '',
@@ -381,7 +380,7 @@ class Plugin_Name {
 		
 		);
 		if ( is_user_logged_in() ) {
-		comment_form($args);
+			comment_form($args);
 		}else{
 			echo "Please log in";
 		}
@@ -391,7 +390,7 @@ class Plugin_Name {
 
 	public function timeAgo($time){
 	
-	   $periods = array("s", "m", "hr", "d", "w", "m", "y", "d");
+	   $periods = array("s", "m", "hr", "d", "w", "mn", "y", "d");
 	   $lengths = array("60","60","24","7","4.35","12","10");
 	
 	   $now = time();
