@@ -315,8 +315,10 @@ class Plugin_Name {
 		foreach($comments as $comment){
 			echo "<div class='clientComment'>";
 			//echo get_avatar( $comment->author, $size, $default, $alt );
+
 				echo get_avatar( $comment->comment_author_email, 71);
-				echo $comment->comment_content;
+				echo "<p>".$comment->comment_author." - ".self::timeAgo(strtotime($comment->comment_date))."</p>";
+				echo "<p>".$comment->comment_content."</p>";
 				
 				
 	/*
@@ -326,7 +328,6 @@ class Plugin_Name {
 				echo("<br>");
 	*/
 				
-				echo " - ".self::timeAgo(strtotime($comment->comment_date));
 				
 			
 

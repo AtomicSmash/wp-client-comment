@@ -36,10 +36,12 @@ $clientCommentCream: #f4f2ef;
 	bottom: -1000px;
 	right: 0px;
 	background: $clientCommentCream;
-	padding: 20px;
+	padding: 12px;
 	z-index: 999999;
 	@include box-shadow(0px 0px 5px 0px rgba(0, 0, 0, 0.25));
 	@include single-transition(all, 0.3s, ease-in-out, 0ms);
+	max-height: 80%;
+	overflow-y: scroll;
 	
 	.clientCommentButtonClose{
 		position: absolute;
@@ -49,6 +51,7 @@ $clientCommentCream: #f4f2ef;
 	.clientComment{
 		float: left;
 		margin-bottom: 20px;
+		clear: left;
 		.avatar{
 			@include border-radius(36px);
 			float: left;
@@ -56,6 +59,10 @@ $clientCommentCream: #f4f2ef;
 		}
 		p{
 			color: $clientCommentDarkBlue;
+			margin-left: 81px;
+			margin-top: 0px;
+			margin-bottom: 16px;
+			font-size: 14px;
 		}
 	}
 	&.active{
@@ -78,5 +85,9 @@ $clientCommentCream: #f4f2ef;
 		font-size: 13px;
 		border: 0px;
 		padding: 7px 15px;
+	}
+	.form-submit{
+		margin-top: 0px;
+		margin-bottom: 0px;
 	}
 }
